@@ -1,39 +1,27 @@
-import 'dart:io';
-import 'package:flutter/material.dart';
+// lib/app/modules/pick_video/controllers/pick_video_controller.dart
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:video_player/video_player.dart';
+import 'package:file_picker/file_picker.dart';
 
-class VideopickController extends GetxController {
-  final ImagePicker _picker = ImagePicker();
-  //List<XFile>? _selectedFiles;
+class PickVideoController extends GetxController {
+  final selectedVideos = <String>[].obs;
+  final isLoading = false.obs;
 
-  //from videoplyr package
-  VideoPlayerController? videoController;
-  // bool _isVideo = false;
+  Future<void> pickVideos() async {
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.video,
+      allowMultiple: true,
+    );
 
-
-  Future<void> pickVideo() async {
-    try {
-      final XFile? videoFile =
-          await _picker.pickVideo(source: ImageSource.gallery);
-      if (videoFile != null) {
-        videoController = VideoPlayerController.file(File(videoFile.path))
-          ..initialize().then((_) {
-               update();
-            videoController?.play();
-           // update();
-          });
-      }
-    } catch (e) {
-      Get.snackbar('Error', 'Failed in picking the video: $e');
+    if (result != null) {
+      isLoading.value = true;
+      selectedVideos.assignAll(result.paths.whereType<String>());
+      await Future.delayed(Duration(seconds: 1));
+      isLoading.value = false;
+      Get.toNamed('/editing', arguments: selectedVideos);
+      update();
     }
   }
-
-  
-  @override
-  void onClose() {
-    videoController?.dispose();
-    super.onClose();
-  }
 }
+
+
+

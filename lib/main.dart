@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-
 import 'app/routes/app_pages.dart';
+
 
 // void main() {
 //   runApp(
@@ -14,8 +13,9 @@ import 'app/routes/app_pages.dart';
 //   );
 // }
 
-
-void main() => runApp(const MyApp());
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -23,13 +23,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+
       debugShowCheckedModeBanner: false,
-    
-     
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
-      //home: const MyHomePage(),
+       theme: ThemeData(
+        scaffoldBackgroundColor: Colors.black, // Set global background color
+      ),
     );
   }
 }
+
 

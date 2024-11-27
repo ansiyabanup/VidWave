@@ -1,99 +1,42 @@
-import 'dart:io';
-
+// lib/app/modules/pick_video/views/pick_video_view.dart
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-import 'package:video_player/video_player.dart';
+import 'package:video_editor_app/app/modules/videopick/controllers/videopick_controller.dart';
 
-import '../controllers/videopick_controller.dart';
+class PickVideoView extends GetView<PickVideoController> {
+  const PickVideoView({super.key});
 
-class VideopickView extends GetView<VideopickController> {
- @override
+  @override
   Widget build(BuildContext context) {
+    final PickVideoController controller = Get.find<PickVideoController>();
     return Scaffold(
-      appBar: AppBar(title: const Text('Media Picker')),
-      body: Center(
-        child: GetBuilder<VideopickController>(
-          builder: (controller) {
-            if (controller.videoController != null && controller.videoController!.value.isInitialized) {
-              return AspectRatio(
-                aspectRatio: controller.videoController!.value.aspectRatio,
-                
-                child: VideoPlayer(controller.videoController!),
-              );
-            } else {
-              return const Text("No video selected");
-            }
-          },
-        ),
+      appBar: AppBar(
+        title: const Text('Video Editor'),
       ),
-      floatingActionButton: 
-     
-      
-          FloatingActionButton(
-            onPressed:  controller.pickVideo,
-            tooltip: 'Pick Video',
-            child: const Icon(Icons.video_library),
-          ),
-     
+      body: Center(
+        child: Obx(() {
+          if (controller.isLoading.value) {
+            return const CircularProgressIndicator();
+          }
+          return SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              onPressed: controller.pickVideos,
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                backgroundColor: const Color.fromARGB(255, 165, 164, 208),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+              child: const Text(
+                'New Project',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+            ),
+          );
+        }),
+      ),
     );
   }
 }
-
-
-// class VideoGalleryView extends GetView<VideoGalleryController> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(title: Text("Select Videos")),
-//       body: Column(
-//         children: [
-//           Expanded(
-//             child: Obx(() => GridView.builder(
-//                   itemCount: controller.videoList.length,
-//                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-//                     crossAxisCount: 3,
-//                     mainAxisSpacing: 10,
-//                     crossAxisSpacing: 10,
-//                   ),
-//                   itemBuilder: (context, index) {
-//                     final video = controller.videoList[index];
-//                     return GestureDetector(
-//                       onTap: () {
-//                         controller.toggleSelection(video);
-//                       },
-//                       child: Stack(
-//                         children: [
-//                           // Thumbnail here (using a placeholder)
-//                           Container(color: Colors.black38),
-//                           if (controller.isSelected(video))
-//                             Positioned(
-//                               top: 0,
-//                               right: 0,
-//                               child: Icon(Icons.check_circle, color: Colors.green),
-//                             ),
-//                         ],
-//                       ),
-//                     );
-//                   },
-//                 )),
-//           ),
-//           Padding(
-//             padding: const EdgeInsets.all(16.0),
-//             child: ElevatedButton(
-//               onPressed: () {
-//                 if (controller.selectedVideos.isNotEmpty) {
-//                   Get.toNamed('/video_player', arguments: controller.selectedVideos);
-//                 } else {
-//                   Get.snackbar("Selection Error", "Please select at least one video");
-//                 }
-//               },
-//               child: Text("Next"),
-//               style: ElevatedButton.styleFrom(minimumSize: Size(double.infinity, 50)),
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }

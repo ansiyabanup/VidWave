@@ -1,10 +1,14 @@
 import 'package:get/get.dart';
-import 'package:video_editor_app/app/modules/splash/splash_screen.dart';
+import 'package:video_editor_app/app/modules/editing/bindings/editing_binding.dart';
+import 'package:video_editor_app/app/modules/editing/views/editing_view.dart';
 import 'package:video_editor_app/app/modules/videopick/bindings/videopick_binding.dart';
-import 'package:video_editor_app/app/modules/videopick/views/videopick_view.dart';
-
+import '../modules/gallery/bindings/gallery_binding.dart';
+import '../modules/gallery/views/gallery_view.dart';
 import '../modules/permisssion/bindings/permission_binding.dart';
 import '../modules/permisssion/views/permission_view.dart';
+import '../modules/splash/splash_screen.dart';
+
+import '../modules/videopick/views/videopick_view.dart';
 
 part 'app_routes.dart';
 
@@ -21,12 +25,22 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.VIDEOPICK,
-      page: () => VideopickView(),
+      page: () => PickVideoView(),
       binding: VideopickBinding(),
     ),
     GetPage(
       name: _Paths.SPLASH,
       page: () => SplashScreen(),
+    ),
+    GetPage(
+      name: _Paths.EDITING,
+      page: () => EditingView(),
+      binding: EditingBinding(),
+    ),
+    GetPage(
+      name: _Paths.GALLERY,
+      page: () => const GalleryView(),
+      binding: GalleryBinding(),
     ),
   ];
 }
