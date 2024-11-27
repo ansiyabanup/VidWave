@@ -5,6 +5,8 @@ import 'package:video_player/video_player.dart';
 import '../controllers/editing_controller.dart';
 
 class EditingView extends GetView<EditingController> {
+  const EditingView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
