@@ -1,4 +1,3 @@
-// lib/app/modules/pick_video/views/pick_video_view.dart
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:video_editor_app/app/modules/videopick/controllers/videopick_controller.dart';
@@ -8,7 +7,9 @@ class PickVideoView extends GetView<PickVideoController> {
 
   @override
   Widget build(BuildContext context) {
+    // final PickVideoController controller = Get.find(PickVideoController());
     final PickVideoController controller = Get.find<PickVideoController>();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Video Editor'),

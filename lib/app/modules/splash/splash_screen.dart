@@ -31,9 +31,8 @@ class _SplashScreenState extends State<SplashScreen> {
                       fit: BoxFit.cover,
                     ),
 
-// Positioned text 
+// Positioned text
 
-                  
                     Positioned.fill(
                       child: Container(
                         decoration: BoxDecoration(
@@ -41,15 +40,10 @@ class _SplashScreenState extends State<SplashScreen> {
                             begin: Alignment.bottomCenter,
                             end: Alignment.center,
                             colors: [
-                              const Color.fromARGB(
-                                  255, 20, 20, 20), // Black at the bottom
-                              const Color.fromARGB(0, 230, 207,
-                                  207), // Transparent towards the center
+                              const Color.fromARGB(255, 20, 20, 20),
+                              const Color.fromARGB(0, 230, 207, 207),
                             ],
-                            stops: [
-                              0.9,
-                              0.9
-                            ], // Adjust stops for smooth blending
+                            stops: [0.9, 0.9],
                           ),
                         ),
 
@@ -64,24 +58,22 @@ class _SplashScreenState extends State<SplashScreen> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Get.toNamed('/videopick');
+                            },
                             style: ElevatedButton.styleFrom(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 30, vertical: 15),
-                              backgroundColor: const Color.fromARGB(255, 225, 225, 236), // Custom button color
+                              backgroundColor: const Color.fromARGB(
+                                  255, 225, 225, 236), // Custom button color
                             ),
                             child: const Text("Get Started"),
                           ),
                           const SizedBox(height: 20),
                           GestureDetector(
-                            onTap: () {
-                              // Free trial action
-                            },
+                            onTap: () {},
                             child: GestureDetector(
-                              onTap: () {
-                                Get.toNamed('/videopick');
-                                
-                              },
+                              onTap: () {},
                               child: const Text(
                                 "Enable free trial",
                                 style: TextStyle(

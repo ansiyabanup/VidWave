@@ -46,6 +46,7 @@ dependencies:
   ffmpeg_kit_flutter: ^6.0.3
   path_provider: ^2.1.5
   video_thumbnail_slider: ^0.0.3
+  video_trimmer: ^3.0.1
   
   
 
