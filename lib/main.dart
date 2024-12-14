@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:video_editor_app/app/modules/videopick/controllers/videopick_controller.dart';
-import 'package:video_editor_app/app/modules/videopick/views/videopick_view.dart';
+
 import 'app/routes/app_pages.dart';
 
 // void main() {
@@ -35,7 +34,7 @@ class MyApp extends StatelessWidget {
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.black, // Set global background color
+        scaffoldBackgroundColor: Colors.black,
       ),
     );
   }

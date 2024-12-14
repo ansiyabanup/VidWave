@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:get/get.dart';
 import 'package:file_picker/file_picker.dart';
 
@@ -16,11 +14,12 @@ class PickVideoController extends GetxController {
     if (result != null) {
       //isLoading.value = true;
       selectedVideos.assignAll(result.paths.whereType<String>());
-      await Future.delayed(Duration(seconds: 1));
-      //isLoading.value = false;
+      print(
+          'Selected videos in order: ${selectedVideos.join(", ")}'); // Log selected order
+      await Future.delayed(const Duration(seconds: 1));
 
-      Get.toNamed('/editing', arguments: selectedVideos);
-
+      Get.toNamed('/editing', arguments: selectedVideos.toList());
+      isLoading.value = false;
       update();
     }
   }
